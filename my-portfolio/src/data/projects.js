@@ -17,12 +17,6 @@ const projects = [
     title:"Expense Tracker",
     description: "A full-stack expense tracker built with Python and FireBase, allowing users to track their expenses and visualize spending habits.",
     tech: ["Python", "FireBase"]
-},
-{ 
-    id: 4,
-    title:"Portfolio Website",
-    description: "A personal portfolio website built with React and Tailwind CSS, showcasing my projects and skills.",
-    tech: ["React", "Tailwind CSS"]
 }
 ]
 export default projects

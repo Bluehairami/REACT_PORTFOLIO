@@ -157,12 +157,22 @@ code {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
-
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 .skill-card {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
   text-align: center;
+}
+.experience-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
 }
 .projects-grid {
   display: grid;
