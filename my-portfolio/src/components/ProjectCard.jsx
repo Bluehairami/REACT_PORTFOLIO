@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ProjectModal from './ProjectModalTemp';
+import ProjectModal from './ProjectModal';
 
 function ProjectCard({ title, problem, role, decision, result, stack, demoUrl, repoUrl, videoUrl, screenshots, architecture }) {
     const [expanded, setExpanded] = useState(false);
