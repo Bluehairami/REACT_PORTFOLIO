@@ -2,18 +2,29 @@ const skills = [
     {
         id: 1,
         title: "Frontend",
-        items: ["HTML", "CSS", "JavaScript", "React", "Redux", "Angular", "TypeScript"]
+        items: ["Angular", "React", "HTML5", "TypeScript"]
     },
     {
         id: 2,
         title: "Backend",
-        items: ["Node.js", ".NET Core", "Flask", "Python"]
+        items: ["C#", ".NET Core", "REST APIS", "Python"]
     },
     {
         id: 3,
-        title: "Database",
-        items: ["SQL Server", "Firebase", "PostgreSQL"]
-    }
+        title: "Databases",
+        items: ["SQL Server", "MySQL", "Firebase Firestore", "MongoDB"]
+    },
+    {
+        id: 4,
+        title: "CLOUD & DEVOPS",
+        items: ["AWS", "Azure", "Docker", "Kubernetes", "Git . GitHub"]
+    },
+    {
+        id: 5,
+        title: "CORE CONCEPTS",
+        items: ["OOP", "DSA", "API Design", "Database Design", "Auth"]
+    },
+    
 ]
 export default skills
 // array

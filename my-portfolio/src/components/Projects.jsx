@@ -1,21 +1,17 @@
-import projects from '../data/projects'
-import ProjectCard from './ProjectCard'
+import ProjectCard from './ProjectCard';
+import projects from '../data/projects';
 
 function Projects() {
     return (
-        <section className="panel projects-section" id='projects'>
-            <h2 className="project-title">Featured Projects</h2>
+        <section id="projects">
+            <h2>Featured Projects</h2>
             <div className="projects-grid">
-            {projects.map((project) => (
-                <ProjectCard
-                    key={project.id}
-                    title={project.title}
-                    description={project.description}
-                    tech={project.tech}
-                />
-            ))}
-        </div>
+                {projects.map((p) => (
+                    <ProjectCard key={p.title} {...p} />
+                ))}
+            </div>
         </section>
-    )
+    );
 }
-export default Projects
+
+export default Projects;

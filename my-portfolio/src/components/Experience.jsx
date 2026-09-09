@@ -13,6 +13,7 @@ function Experience() {
                         role={experience.role}
                         company={experience.company}
                         location={experience.location}
+                        duration={experience.duration}
                     />
                 ))}
             </div>
