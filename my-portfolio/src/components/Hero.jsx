@@ -6,7 +6,6 @@ function Hero({title, subtitle, variant}) {
             <h1 className="title">{title}</h1>
             <p className="subtitle">{subtitle}</p>
             <div className="hero-buttons">
-                <a href="" className="btn-link">View projects</a>
                 <a href=""  className="btn-link">Download Resume</a>
             </div>
         </section>

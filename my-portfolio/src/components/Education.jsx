@@ -4,7 +4,7 @@ function Education() {
             <div>
                 Full Stack Software Development 
                 |  Sarnia, ON                            │
-                   Lambton College • 2026                                     │
+                   Lambton College • 2026                                     
             </div>
             <div>
                 Bachelor of Computer Applications   

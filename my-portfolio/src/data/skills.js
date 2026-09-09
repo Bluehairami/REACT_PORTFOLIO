@@ -2,7 +2,7 @@ const skills = [
     {
         id: 1,
         title: "Frontend",
-        items: ["Angular", "React", "HTML5", "CSS3", "JavaScript", "TypeScript"]
+        items: ["Angular", "React", "HTML5", "TypeScript"]
     },
     {
         id: 2,

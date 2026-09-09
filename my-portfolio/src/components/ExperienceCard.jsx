@@ -1,4 +1,4 @@
-function ExperienceCard({id,role,company,location}){
+function ExperienceCard({id,role,company,location, duration}){
     return (
         <div className="experience-card">
             <h3>{role}</h3>
@@ -8,6 +8,9 @@ function ExperienceCard({id,role,company,location}){
             </p>
             <p>
                 {location}
+            </p>
+               <p>
+                {duration}
             </p>
         </div>
     )
