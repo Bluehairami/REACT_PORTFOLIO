@@ -6,7 +6,7 @@ function Hero({title, subtitle, variant}) {
             <h1 className="title">{title}</h1>
             <p className="subtitle">{subtitle}</p>
             <div className="hero-buttons">
-                <a href="/AMI_Valand_resume.pdf"  className="btn-link">Download Resume</a>
+                <a href="/AMI_VALAND.pdf"  className="btn-link">Download Resume</a>
             </div>
         </section>
     )
