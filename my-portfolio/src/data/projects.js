@@ -48,6 +48,57 @@ const projects = [
     ]
   },
   {
+  title: "MediCare — Clinic Admin Dashboard",
+
+  problem: "Wanted a purpose-built full-stack project to design a clean-architecture backend and a role-based clinic system from scratch.",
+
+  role: "Designed the .NET 8 clean-architecture backend (Domain/Application/Infrastructure/Api) and built the Angular admin dashboard, adapting the auth, SignalR, and dashboard-aggregation patterns from the CRM project into a new healthcare domain.",
+
+  decision: "Split the backend into 4 layers instead of one monolithic API project. Used role-based JWT auth across four roles (SuperAdmin, Admin, Doctor, Receptionist), with server-side query scoping so a logged-in Doctor only ever sees their own patients and appointments — enforced in the controller, not just hidden in the UI. Linked Doctor directory entries directly to their login accounts so adding a doctor creates a working login in the same transaction.",
+
+  result: "A working clinic dashboard covering patients, doctors, appointments, medical records, and prescriptions, with a single aggregated endpoint powering the whole home screen (stat cards, 7-day appointment trend, patient gender breakdown, specialty distribution) in one API call.",
+
+  stack: ["Angular", ".NET 8", "SQL Server", "SignalR", "MailKit"],
+
+  demoUrl: null,
+  repoUrl: 'https://github.com/Bluehairami/MediCare-Backend.git',
+  videoUrl: "",
+
+  screenshots: [
+  { src: "/projects/medicare/MediCare-Dashboard.png", caption: "Admin dashboard — patient/doctor counts, today's appointments, pending records, 7-day appointment trend, and patient gender breakdown, all from a single aggregated API call." },
+  { src: "/projects/medicare/Appointment-Book.png", caption: "Appointment booking — schedule a patient with a doctor, with status tracked through Pending → Confirmed → Completed and real-time notifications on any change." },
+  { src: "/projects/medicare/PatientList.png", caption: "Patient list — searchable directory of registered patients with contact info, last visit, and active status." },
+  { src: "/projects/medicare/Profile.png", caption: "User profile — shows the logged-in staff member's name, role, and contact details." },
+  { src: "/projects/medicare/Swagger-api2.png", caption: "Swagger UI — full CRUD API surface for patients, doctors, appointments, medical records, and prescriptions, with JWT bearer auth testable directly from the docs." },
+],
+
+  architecture: [
+    {
+      layer: "Frontend", bullets: [
+        "Built a role-based Angular 21 (standalone components) dashboard with separate views for SuperAdmin, Admin, Doctor, and Receptionist roles.",
+        "Built dependency-free inline-SVG chart components (line + donut) instead of pulling in a charting library, to keep the bundle lean.",
+        "Integrated SignalR for real-time appointment and record notifications pushed straight to the bell icon.",
+        "Built create/edit flows for patients, doctors, appointments, medical records, and prescriptions, each scoped to what the logged-in role is allowed to do."
+      ]
+    },
+    {
+      layer: "Backend", bullets: [
+        "Structured the API using clean architecture: Domain (entities/enums), Application (DTOs/services), Infrastructure (EF Core, email, SignalR), and Api (controllers, auth, hubs).",
+        "Implemented JWT authentication with role-based authorization on every endpoint, plus server-side scoping so Doctor-role requests are filtered to that doctor's own data regardless of what the client requests.",
+        "Linked the Doctor directory table to the Users login table via a foreign key, so creating a doctor and creating their login happen atomically in one transaction.",
+        "Built a background hosted service that emails same-day appointment reminders, and an SMTP-based password-reset flow via MailKit."
+      ]
+    },
+    {
+      layer: "Database", bullets: [
+        "Designed a SQL Server schema using Entity Framework Core for users, patients, doctors, appointments, medical records, prescriptions, and notifications.",
+        "Modeled the relationships so a medical record can optionally link back to the appointment it documents, with delete-cascade paths deliberately restricted to avoid SQL Server's multiple-cascade-path errors.",
+        "Used EF Core migrations to evolve the schema iteratively as new features (doctor logins, appointment linking) were added."
+      ]
+    },
+  ]
+},
+  {
     title: "Employee Management System",
     problem: "Company needed a centralized way to track employee records and performance reviews.",
     role: "Built the Angular front-end and integrated it with the .NET Core REST API.",
