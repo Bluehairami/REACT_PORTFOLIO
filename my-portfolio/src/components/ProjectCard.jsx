@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ProjectModal from './ProjectModal';
 
-function ProjectCard({ title, problem, role, decision, result, stack, demoUrl, repoUrl, videoUrl, screenshots, architecture }) {
+function ProjectCard({ title, problem, role, decision, result, stack, demoUrl, repoUrl, videoUrl, screenshots, architecture, privateNote }) {
     const [expanded, setExpanded] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const hasMedia = videoUrl || (screenshots && screenshots.length > 0);
@@ -32,25 +32,24 @@ function ProjectCard({ title, problem, role, decision, result, stack, demoUrl, r
 
             <div className="project-links">
                 {hasMedia && (
-                    <button className="watch-demo-btn" onClick={() => setShowModal(true)}>Watch Demo</button>
-                )}
+                    <button className="watch-demo-btn" onClick={() => setShowModal(true)}>
+                        {videoUrl ? 'Watch Demo' : 'View Screenshots'}
+                    </button>)}
                 {demoUrl && <a href={demoUrl} target="_blank" rel="noreferrer">Live Demo</a>}
                 {repoUrl && <a href={repoUrl} target="_blank" rel="noreferrer">GitHub</a>}
-                {!demoUrl && !repoUrl && !hasMedia && <span className="private-note">Private repo — details on request</span>}
-                {!demoUrl && !repoUrl && hasMedia && <span className="private-note">Internal system — private repo</span>}
-            </div>
+                
 
-            {showModal && (
-                <ProjectModal
-                    title={title}
-                    videoUrl={videoUrl}
-                    screenshots={screenshots}
-                    architecture={architecture}
-                    onClose={() => setShowModal(false)}
-                />
-            )}
+                {showModal && (
+                    <ProjectModal
+                        title={title}
+                        videoUrl={videoUrl}
+                        screenshots={screenshots}
+                        architecture={architecture}
+                        onClose={() => setShowModal(false)}
+                    />
+                )}
+            </div>
         </div>
     );
 }
-
 export default ProjectCard;

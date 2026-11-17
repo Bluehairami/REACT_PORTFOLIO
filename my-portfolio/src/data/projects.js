@@ -47,6 +47,57 @@ const projects = [
       },
     ]
   },
+  
+    {
+    title: "Claim Reader: AI Insurance Claim Extraction",
+
+    problem: "Insurance claim intake means someone retyping names, policy numbers, amounts, and dates from PDFs and images by hand, which is slow and error-prone.",
+
+    role: "Built the full application independently: the Angular frontend, the backend API, the PostgreSQL database, and the Gemini integration, packaged with Docker.",
+
+    decision: "Treated the AI as an unreliable reader instead of a source of truth. Gemini extracts the fields, but separate server-side validation checks every one (policy format, amount range, incident date) before the claim can be trusted. Anything that fails goes to Needs review, and a claim becomes Approved only after a human corrects it and validation passes a second time.",
+
+    result: "A working claim-intake workflow: upload a PDF, PNG, or JPG, get structured fields back in seconds, review them beside the original document, and approve. Failed fields are highlighted instead of silently accepted, and extraction errors never crash the app.",
+
+    stack: ["Angular", "PostgreSQL", "Docker", "Google Gemini API"], // add ".NET" here if the backend is ASP.NET Core
+
+    demoUrl: null,
+    repoUrl: 'https://github.com/Bluehairami/claim-reader.git', // add your GitHub repo link once it's pushed
+    videoUrl: "",
+
+    screenshots: [
+      { src: "/projects/claim-reader/Claim-Extracted.png", caption: "Extracted claim shown beside the original PDF, with editable fields and Approve / Re-run extraction actions." },
+      { src: "/projects/claim-reader/Claim-Failed.png", caption: "When extraction fails, each problem field is highlighted with a specific message, such as the expected policy number format." },
+      { src: "/projects/claim-reader/Claim-list.png", caption: "Claims dashboard with status filters (All, Needs review, Approved, Failed) and a count of fields that still need checking." },
+      { src: "/projects/claim-reader/Claim-Upload.png", caption: "Drag-and-drop upload for PDF, PNG, and JPG documents up to 10 MB." },
+    ],
+
+    architecture: [
+      {
+        layer: "Frontend", bullets: [
+          "Built an Angular app with an upload page, a filterable claims list, and a review page that shows the original document next to the editable extracted fields.",
+          "Highlighted fields that failed validation with specific messages so reviewers know exactly what to check.",
+          "Added Approve and Re-run extraction actions, plus a loading state while the AI reads the document."
+        ]
+      },
+      {
+        layer: "Backend", bullets: [
+          "Built a REST API that validates uploads (PDF, PNG, or JPG, non-empty, max 10 MB) and stores files under random names to prevent overwrites and unsafe file names.",
+          "Integrated the Gemini API to extract claimant name, policy number, amount, incident date, and description as JSON, with retry handling (up to 3 attempts) for 429 and 503 errors.",
+          "Added a separate validation layer that checks the AI output against business rules and sets each claim to Extracted, Needs review, or Failed.",
+          "Re-runs the same validation when a reviewer saves corrections, and only allows Approved if every field passes.",
+          "Wrapped extraction in error handling so a bad API key or network failure marks the claim Failed instead of crashing the app."
+        ]
+      },
+      {
+        layer: "Database", bullets: [
+          "Designed a PostgreSQL schema to store each claim's file reference, status, extracted fields, list of fields needing review, and upload date.",
+          "Stored Gemini's raw response alongside each claim so extraction results can be audited and debugged.",
+          "Containerized the app and database with Docker for consistent local setup."
+        ]
+      },
+    ]
+  },
   {
   title: "MediCare — Clinic Admin Dashboard",
 
