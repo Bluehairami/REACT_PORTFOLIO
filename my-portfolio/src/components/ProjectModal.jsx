@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
- 
+
 function ProjectModal({ title, videoUrl, screenshots = [], architecture = [], onClose }) {
     const [activeShot, setActiveShot] = useState(0)
- 
+
     useEffect(() => {
         const onKey = (e) => {
             if (e.key === 'Escape') onClose()
@@ -15,15 +15,14 @@ function ProjectModal({ title, videoUrl, screenshots = [], architecture = [], on
             document.body.style.overflow = ''
         }
     }, [onClose])
- 
+
     return createPortal(
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h3>{title} — Demo Walkthrough</h3>
-                    <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
+                    <h3>{title} — {videoUrl ? 'Demo Walkthrough' : 'Project Walkthrough'}</h3>                    <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
                 </div>
- 
+
                 {videoUrl && (
                     <div className="modal-video">
                         <iframe
@@ -35,12 +34,12 @@ function ProjectModal({ title, videoUrl, screenshots = [], architecture = [], on
                         />
                     </div>
                 )}
- 
+
                 {screenshots.length > 0 && (
                     <div className="modal-gallery">
                         <img src={screenshots[activeShot].src} alt={screenshots[activeShot].caption} />
                         <p className="gallery-caption">{screenshots[activeShot].caption}</p>
- 
+
                         {screenshots.length > 1 && (
                             <div className="gallery-thumbs">
                                 {screenshots.map((shot, i) => (
@@ -76,6 +75,6 @@ function ProjectModal({ title, videoUrl, screenshots = [], architecture = [], on
         document.body
     )
 }
- 
+
 export default ProjectModal
- 
+
